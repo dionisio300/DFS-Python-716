@@ -1,0 +1,1 @@
+Este projeto utiliza FastAPI, Uvicorn e MySQL como banco de dados.

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Evento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #666;
+            display: block;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .event-list {
+            margin-top: 40px;
+        }
+
+        .event-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-item h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .event-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cadastro de Evento</h1>
+        <form id="eventForm">
+            <label for="eventName">Nome do Evento</label>
+            <input type="text" id="eventName" name="eventName" required>
+
+            <label for="eventDate">Data do Evento</label>
+            <input type="date" id="eventDate" name="eventDate" required>
+
+            <label for="eventDescription">Descrição do Evento</label>
+            <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
+
+            <button type="submit">Cadastrar Evento</button>
+        </form>
+
+        <div class="event-list" id="eventList">
+            <!-- Lista de eventos será exibida aqui -->
+        </div>
+    </div>
+
+    <script>
+        const eventForm = document.getElementById('eventForm');
+        const eventList = document.getElementById('eventList');
+        let events = []; // Array para armazenar os eventos cadastrados
+
+        // Função para renderizar a lista de eventos
+        function renderEvents() {
+            eventList.innerHTML = ''; // Limpa a lista antes de renderizar
+
+            if (events.length === 0) {
+                eventList.innerHTML = '<p>Nenhum evento cadastrado.</p>';
+                return;
+            }
+
+            events.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.classList.add('event-item');
+                eventItem.innerHTML = `
+                    <h2>${event.name}</h2>
+                    <p><strong>Data:</strong> ${event.date}</p>
+                    <p><strong>Descrição:</strong> ${event.description}</p>
+                `;
+                eventList.appendChild(eventItem);
+            });
+        }
+
+        // Função para lidar com o envio do formulário
+        eventForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Impede o envio do formulário (para não recarregar a página)
+
+            const eventName = document.getElementById('eventName').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+
+            // Adiciona o novo evento no array de eventos
+            events.push({
+                name: eventName,
+                date: eventDate,
+                description: eventDescription
+            });
+
+            // Limpa os campos do formulário
+            eventForm.reset();
+
+            // Renderiza a lista de eventos atualizada
+            renderEvents();
+        });
+
+        // Renderiza a lista de eventos quando a página é carregada
+        renderEvents();
+    </script>
+
+</body>
+</html>

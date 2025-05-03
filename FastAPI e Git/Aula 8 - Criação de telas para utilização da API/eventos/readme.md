@@ -1,0 +1,1 @@
+Este é um projeto para a criação de uma API para uma empresa de eventos
