@@ -1,0 +1,17 @@
+h1{
+    color: blue;
+    background-color: bisque;
+}
+
+#cssExterno{
+    color: aquamarine;
+    background-color: red;
+}
+
+.subTitulo{
+    color: blueviolet;
+    background-color: blanchedalmond;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
