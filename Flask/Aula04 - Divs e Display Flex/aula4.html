@@ -8,8 +8,32 @@
 <body>
     <!-- Revisão de formulários -->
      <h2>Formulário de Candidatura</h2>
-     
+
      <form action="">
+        <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome"> <br><br>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email"> <br><br>
+
+        <label for="cargo">Cargo de Tecnologia: </label>
+        <select name="cargo" id="cargo">
+            <option value="">-- Selecione --</option>
+            <option value="dev">FrontEnd</option>
+            <option value="back">Backend</option>
+            <option value="banco">Adm Banco de dados</option>
+            <option value="suporte">Suporte</option>
+        </select>
+        <br><br>
+        <label for="">Gênero:</label>
+
+        <input type="radio" id="masculino" value="masculino" name="genero">
+        <label for="masculino">Masculino</label>
+        
+        <input type="radio" id="feminino" value="feminino" name="genero">
+        <label for="feminino">Feminino</label>
+
+        <input type="radio" id="outro" value="outro" name="genero">
+        <label for="outro">Outro</label>
 
      </form>
     
