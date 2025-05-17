@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula4</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <style>
+        h2{
+            color: black;
+        }
+        form{
+            background-color: rgb(204, 200, 200);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+    </style>
+
 </head>
 <body>
     <!-- Revisão de formulários -->
@@ -34,6 +49,24 @@
 
         <input type="radio" id="outro" value="outro" name="genero">
         <label for="outro">Outro</label>
+        <br><br>
+        <Label>Unidade de interesse: </Label>
+
+        <input type="checkbox" value="fortaleza" id="fortaleza" name="unidade">
+        <label for="fortaleza">Fortaleza</label>
+
+        <input type="checkbox" value="caucaia" id="caucaia" name="unidade">
+        <label for="caucaia">Caucaia</label>
+
+        <input type="checkbox" value="euzebio" id="euzebio" name="unidade">
+        <label for="euzebio">Euzébio</label>
+        <br><br>
+        <label for="comentario">Fale mais sobre você:</label><br>
+        <textarea name="comentario" id="comentario" cols="40" rows="4">
+        </textarea>
+        
+        <br><br>
+        <input type="submit" value="Enviar">
 
      </form>
     
