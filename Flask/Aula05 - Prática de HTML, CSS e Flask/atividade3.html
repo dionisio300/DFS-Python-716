@@ -4,8 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo Petzzy</title>
+
+    <style>
+        header{
+            display: flex;
+            justify-content: space-around;
+            /* border: solid; */
+            background-color:mediumaquamarine;
+        }
+        nav{
+            display: flex;
+            /* border: solid 1px red; */
+            justify-content: space-around;
+            align-items: center;
+        }
+        .listaMenu{
+            display: flex;
+            list-style-type: none;
+            /* border: solid 1px green; */
+        }
+        ul li{
+            margin: 0 10px;
+        }
+
+
+
+    </style>
+
 </head>
 <body>
+    <header>
+        <div class="marca">
+            <img src="./img/marca.png" alt="" width="200px" height="100px">
+        </div>
+
+        <nav>
+            <ul class="listaMenu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Serviços</a></li>
+                <li><a href="">Produtos</a></li>
+            </ul>
+            <div>
+                <input type="text">
+                <button>Buscar</button>
+            </div>
+            <ul class="listaMenu">
+                <li><a href="">Entrar</a></li>
+                <li><a href="">Adote</a></li>
+            </ul>
+        </nav>
+
+    </header>
     
 </body>
 </html>
