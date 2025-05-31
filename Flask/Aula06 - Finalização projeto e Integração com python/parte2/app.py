@@ -11,9 +11,9 @@ def paginaInicial():
 def paginaSobre():
     return render_template('sobre.html')
 
-# app.route("/paginaContato")
-# def paginaContato():
-#     return '<h1>Essa é a página de contato</h1>'
+app.route("/contato")
+def paginaContato():
+    return render_template('contato.html')
 
 
 if __name__ == '__main__':
