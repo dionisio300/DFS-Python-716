@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'estilos.css')}}">
 </head>
 <body>
     <h1>Essa é a página de contato</h1>
@@ -18,6 +19,11 @@
                 <li>
                     <a href="{{url_for('paginaSobre')}}">
                         Sobre
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('paginaContato')}}">
+                        Contato
                     </a>
                 </li>
             </ul>
