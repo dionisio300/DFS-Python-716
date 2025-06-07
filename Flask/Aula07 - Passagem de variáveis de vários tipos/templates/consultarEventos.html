@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Essa é a página Consultar Eventos</h1>
+<div>
+    <form method="post">
+        <label for="">Digite o nome do evento</label>
+        <input type="text" name="id_busca">
+        <button>Buscar</button>
+    </form>
+    
+</div>
+
+<hr>
+{% if mostrarResultado %}
+<div>
+    <h3>Dados do evento</h3>
+    <p>Nome: <span>{{dadosEvento.nome}}</span></p>
+    <p>Data: <span>{{dadosEvento.data}}</span></p>
+    <p>Local: <span>{{dadosEvento.local}}</span></p>
+    <p>Hora: <span>{{dadosEvento.hora}}</span></p>
+    <p>Lotação: <span>{{dadosEvento.lotacao}}</span></p>
+    <p>Ingressos disponíveis: <span>{{dadosEvento.ingressosDisponiveis}}</span></p>
+</div>
+{% endif %}
+
+{% endblock %}
