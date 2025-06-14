@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 07</title>
+    <style>
+        ul{
+            display: flex;
+            list-style-type: none;
+        }
+        ul li{
+            margin-left: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Empresa de Eventos</h1>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('paginaInicial')}}">Home</a></li>
+                <li><a href="{{url_for('paginaListarEventos')}}">Listar Eventos</a></li>
+                <li><a href="{{url_for('paginaConsultar')}}">Consultar Evento</a></li>
+                <li><a href="{{url_for('paginaCadastrar')}}">Cadastrar Evento</a></li>
+                <li><a href="{{url_for('paginaAtualizar')}}">Atualizar Evento</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        {% block conteudo %}
+
+        {% endblock %}
+    </main>
+    
+    
+</body>
+</html>
