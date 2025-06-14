@@ -3,5 +3,21 @@
 {% block conteudo %}
 
 <h1>Essa é a página de listagem de eventos</h1>
+<h2>Os eventos cadastrados são:</h2>
 
+{% for evento in eventos %}
+<hr>
+<div>
+    <p>
+        Nome: {{evento.nome}} | 
+        Data: {{evento.data}} |
+        Local: {{evento.local}} |
+        Hora: {{evento.hora}} |
+        Lotação: {{evento.lotacao}} |
+        Ingressos disponíveis: {{evento.ingressosDisponiveis}}
+    </p> 
+</div>
+
+{% endfor %}
+<hr>
 {% endblock %}

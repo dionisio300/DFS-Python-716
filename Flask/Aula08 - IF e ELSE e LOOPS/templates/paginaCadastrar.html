@@ -4,4 +4,41 @@
 
 <h1>Essa é a página de cadastro de eventos</h1>
 
+<script>
+    function cadastradoComSucesso(){
+        alert('O Show foi cadastrado com sucesso!')
+    }
+</script>
+
+<form method="post" onsubmit="cadastradoComSucesso()">
+    <div>
+        <label for="nome">Nome: </label>
+        <input name="nome" id="nome" type="text">
+    </div>
+    <br>
+    <div>
+        <label for="data">Data: </label>
+        <input name="data" id="data" type="date">
+    </div>
+    <br>
+    <div>
+        <label for="local">Local: </label>
+        <input name="local" id="local" type="text">
+    </div>
+    <br>
+    <div>
+        <label for="hora">Hora: </label>
+        <input name="hora" id="hora" type="time">
+    </div>
+    <br>
+    <div>
+        <label for="lotacao">Lotação: </label>
+        <input name="lotacao" id="lotacao" type="number">
+    </div>
+    <br>
+    <input type="submit" value="Enviar">
+</form>
+
+    <br><br><br><br>
+
 {% endblock %}
