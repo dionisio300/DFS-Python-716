@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 dadosEvento = [{
         "nome":'Show de Samba',
-        "data":'02/05/2026',
+        "data":'2026-05-02',
         "local":"Praia",
         "hora": '20:00',
         "lotacao": 3000,
@@ -34,12 +34,15 @@ def paginaInicial():
 
 @app.route('/listarEventos')
 def paginaListarEventos():
-
     return render_template('listarEventos.html',eventos=dadosEvento)
 
-@app.route('/paginaDeletar', methods = ['get','delete'])
+@app.route('/paginaDeletar', methods = ['get','post'])
 def paginaDeletar():
-    return ('Deletar')
+    if request.method=='POST':
+        id = int(request.form.get('id'))
+        dadosEvento.pop(id)
+        return render_template('deletarEvento.html')
+    return render_template('deletarEvento.html')
 
 @app.route('/paginaConsultar', methods = ['get','post'])
 def paginaConsultar():
@@ -94,9 +97,36 @@ def paginaCadastrar():
 
     return render_template('paginaCadastrar.html')
 
-@app.route('/paginaAtualizar')
+@app.route('/paginaAtualizar', methods = ['get','post'])
 def paginaAtualizar():
-    return render_template('paginaAtualizar.html')
+    mostrarEvento = False
+    if request.method == 'POST':
+        id = int(request.form.get('id'))
+        eventoSelecionado = dadosEvento[id]
+        mostrarEvento = True
+        return render_template('paginaAtualizar.html',eventoSelecionado = eventoSelecionado, mostrarEvento = mostrarEvento, id = id)
+    return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
+
+@app.route('/atualizarEvento', methods = ['get','post'])
+def atualizarEvento():
+    mostrarEvento = False
+    if request.method == 'POST':
+        novoNome = request.form.get('nome')
+        novaData = request.form.get('data')
+        novoLocal = request.form.get('local')
+        novaHora = request.form.get('hora')
+        novaLotacao = request.form.get('lotacao')
+        id = int(request.form.get('id_evento'))
+        print(novoNome,novaData,novoLocal,novaHora,novaLotacao,id)
+
+        dadosEvento[id] = {"nome":novoNome,"data":novaData,"local":novoLocal,"hora":novaHora,"lotacao":novaLotacao}
+
+        return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
+    
+    return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

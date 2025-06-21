@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Página Para Deletar</h1>
+
+<form method="post">
+    <label for="id">Id do Evento a ser deletado</label>
+    <input id="id" name="id" type="text">
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock %}
