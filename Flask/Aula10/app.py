@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import mysql.connector as my
 
 app = Flask(__name__)
@@ -191,6 +191,24 @@ def atualizarEvento():
 
 @app.route("/login", methods = ['get','post'])
 def login():
+
+    if request.method == 'POST':
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+        
+        conexao = conectarBanco()
+        cursor = conexao.cursor(dictionary=True)
+        sql = 'select * from usuarios where email = %s'
+        cursor.execute(sql,(email,))
+        usuario = cursor.fetchone()
+        if usuario:
+            if senha == usuario["senha"]:
+                print('Logado com sucesso!!!')
+                return render_template('index.html')
+            else:
+                print('Senha incorreta!!!')
+        else:
+            print('E-mail errado, tente novamente')
 
     return render_template('login.html')
 

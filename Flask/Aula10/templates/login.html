@@ -5,29 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos - Login</title>
+    <style>
+        .areaLogin{
+            width: 30%;
+            border: solid 1px rgb(90, 207, 220);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .elemento-form{
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0px;
+        }
+        .titulo{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            color: rgb(90, 207, 220);
+        }
+        hr{
+            border-color: rgb(90, 207, 220);
+        }
+        #btnLogar{
+            padding: 5px;
+            background-color: rgb(188, 227, 233);
+            border-radius: 2px;
+             box-shadow: 2px 2px 5px rgb(196, 193, 193);
+        }
+        .linkCadastro{
+            text-decoration: none;
+            color: rgb(58, 133, 141);
+        }
+    </style>
 </head>
 
 <body>
 
-    <div>
-        <h1>Login</h1>
+    <div class="areaLogin">
+        <h1 class="titulo">Login</h1>
         <hr>
-        <form action="">
-            <div>
+        <form action="" method="post">
+
+            <div class="elemento-form">
                 <label for="email">Seu E-mail: </label>
                 <input type="email" id="email" name="email">
             </div>
-            <div>
+            <div class="elemento-form">
                 <label for="senha">Senha: </label>
                 <input type="password" id="senha" name="senha">
             </div>
-            <div>
-                <input type="submit" value="Logar">
+            <div class="elemento-form">
+                <input id="btnLogar" type="submit" value="Logar">
             </div>
         </form>
 
         <div>
-            <p>Ainda não tem conta? <a href="">Cadastre-se</a></p>
+            <p>Ainda não tem conta? <a class="linkCadastro" href="">Cadastre-se</a></p>
         </div>
 
     </div>
