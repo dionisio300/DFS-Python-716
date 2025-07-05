@@ -3,7 +3,6 @@ import mysql.connector as my
 
 app = Flask(__name__)
 
-
 def conectarBanco():
     conexao = my.connect(
         host = "localhost",
@@ -12,7 +11,7 @@ def conectarBanco():
         database = "eventos"
     )
     return conexao
-
+conectarBanco()
 
 dadosEvento = [{
         "nome":'Show de Samba',
@@ -53,6 +52,7 @@ def paginaListarEventos():
     eventos = cursor.fetchall()
     cursor.close()
     conexao.close()
+    print(eventos)
 
     return render_template('listarEventos.html',eventos=eventos)
 
@@ -71,10 +71,20 @@ def paginaConsultar():
     if request.method == 'POST':
         id = int(request.form.get('id_busca'))
         mostrarResultado = True
-        resultadoEvento = dadosEvento[id]
         print(id)
+        conexao = conectarBanco()
+        cursor = conexao.cursor(dictionary=True)
+        sql = "select * from eventos where id = %s"
+        cursor.execute(sql,(id,))
+        eventos = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        print(eventos)
+        return render_template('consultarEventos.html',dadosEvento=eventos,mostrarResultado = mostrarResultado)
     
-    return render_template('consultarEventos.html',dadosEvento=resultadoEvento, mostrarResultado = mostrarResultado)
+        
+        
+    return render_template('consultarEventos.html',mostrarResultado = mostrarResultado)
 # mostrarResultado = True
     # nome = 'Show de Samba'
     # data = '02/05/2026'
@@ -99,6 +109,13 @@ def paginaCadastrar():
        lotacao = int(request.form.get('lotacao'))
        ingressosVendidos = 0
        ingressosDisponiveis = lotacao - ingressosVendidos
+       conexao = conectarBanco()
+       cursor=conexao.cursor(dictionary=True)
+       sql = "INSERT INTO eventos(nome_evento, data_evento, hora, lotacao, ingressosVendidos, ingressosDisponiveis,local_evento) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+       cursor.execute(sql,(nome,data,hora,lotacao,ingressosVendidos,ingressosDisponiveis,local))
+       conexao.commit()
+       conexao.close()
+       cursor.close()
        
        novoEvento = {
            "nome":nome,
@@ -122,16 +139,13 @@ def paginaAtualizar():
     mostrarEvento = False
     if request.method == 'POST':
         id = int(request.form.get('id'))
-        
         conexao = conectarBanco()
         cursor = conexao.cursor(dictionary=True)
-        sql = 'select * from evento where id = %s'
-
+        sql = 'select* form evento where id = %s'
         cursor.execute(sql,(id,))
         eventoSelecionado = cursor.fetchone()
         cursor.close()
         conexao.close()
-
         mostrarEvento = True
         return render_template('paginaAtualizar.html',eventoSelecionado = eventoSelecionado, mostrarEvento = mostrarEvento, id = id)
     return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
@@ -148,14 +162,20 @@ def atualizarEvento():
         id = int(request.form.get('id_evento'))
         print(novoNome,novaData,novoLocal,novaHora,novaLotacao,id)
 
+        conexao = conectarBanco()
+        cursor = conexao.cursor(dictionary=True)
+        sql = ''
+        cursor.execute()
+        
+        
+
         dadosEvento[id] = {"nome":novoNome,"data":novaData,"local":novoLocal,"hora":novaHora,"lotacao":novaLotacao}
 
         return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
     
     return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
 
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
+
+    
