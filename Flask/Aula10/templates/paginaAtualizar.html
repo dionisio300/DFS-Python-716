@@ -18,12 +18,12 @@ Mostrar Evento = {{mostrarEvento}}
     <br>
     <div>
         <label for="data">Data: </label>
-        <input id="data" name="data" type="text" value="{{eventoSelecionado['data']}}">
+        <input id="data" name="data" type="text" value="{{eventoSelecionado['data_evento']}}">
     </div>
     <br>
     <div>
         <label for="local">Local: </label>
-        <input id="local" name="local" type="text" value="{{eventoSelecionado['local']}}">
+        <input id="local" name="local" type="text" value="{{eventoSelecionado['local_Evento']}}">
     </div>
     <br>
     <div>
@@ -39,6 +39,17 @@ Mostrar Evento = {{mostrarEvento}}
     <div>
         <input id="id_evento" name="id_evento" type="hidden" value="{{id}}">
     </div>
+
+    <div>
+        <label for="ingressos_vendidos">Ingressos Vendidos: </label>
+        <input id="ingressos_vendidos" name="ingressos_vendidos" type="text" value="{{eventoSelecionado['ingressos_vendidos']}}">
+    </div>
+    <br>
+    <div>
+        <label for="ingressos_disponiveis">Ingressos Disponíveis: </label>
+        <input id="ingressos_disponiveis" name="ingressos_disponiveis" type="text" value="{{eventoSelecionado['ingressos_disponiveis']}}">
+    </div>
+
 
     <input type="submit" value="Enviar">
     

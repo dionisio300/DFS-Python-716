@@ -60,7 +60,13 @@ def paginaListarEventos():
 def paginaDeletar():
     if request.method=='POST':
         id = int(request.form.get('id'))
-        dadosEvento.pop(id)
+        conexao = conectarBanco()
+        cursor = conexao.cursor()
+        sql = 'delete from evento where id = %s'
+        cursor.execute(sql,(id,))
+        conexao.commit()
+        conexao.close()
+        cursor.close()
         return render_template('deletarEvento.html')
     return render_template('deletarEvento.html')
 
@@ -74,7 +80,7 @@ def paginaConsultar():
         print(id)
         conexao = conectarBanco()
         cursor = conexao.cursor(dictionary=True)
-        sql = "select * from eventos where id = %s"
+        sql = "select * from evento where id = %s"
         cursor.execute(sql,(id,))
         eventos = cursor.fetchone()
         cursor.close()
@@ -111,7 +117,7 @@ def paginaCadastrar():
        ingressosDisponiveis = lotacao - ingressosVendidos
        conexao = conectarBanco()
        cursor=conexao.cursor(dictionary=True)
-       sql = "INSERT INTO eventos(nome_evento, data_evento, hora, lotacao, ingressosVendidos, ingressosDisponiveis,local_evento) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+       sql = "INSERT INTO evento(nome, data_evento, hora, lotacao, ingressos_vendidos, ingressos_disponiveis,local_Evento) VALUES (%s,%s,%s,%s,%s,%s,%s)"
        cursor.execute(sql,(nome,data,hora,lotacao,ingressosVendidos,ingressosDisponiveis,local))
        conexao.commit()
        conexao.close()
@@ -141,7 +147,7 @@ def paginaAtualizar():
         id = int(request.form.get('id'))
         conexao = conectarBanco()
         cursor = conexao.cursor(dictionary=True)
-        sql = 'select* form evento where id = %s'
+        sql = 'select * from evento where id = %s'
         cursor.execute(sql,(id,))
         eventoSelecionado = cursor.fetchone()
         cursor.close()
@@ -158,22 +164,37 @@ def atualizarEvento():
         novaData = request.form.get('data')
         novoLocal = request.form.get('local')
         novaHora = request.form.get('hora')
-        novaLotacao = request.form.get('lotacao')
+        novaLotacao = int(request.form.get('lotacao'))
+        novoIngressosVendidos = int(request.form.get('ingressos_vendidos'))
+        novoIngressosDisponiveis = int(request.form.get('ingressos_disponiveis'))
         id = int(request.form.get('id_evento'))
+        
         print(novoNome,novaData,novoLocal,novaHora,novaLotacao,id)
 
         conexao = conectarBanco()
         cursor = conexao.cursor(dictionary=True)
-        sql = ''
-        cursor.execute()
+
+        sql = "update evento set nome = %s ,data_evento = %s,local_Evento = %s, hora = %s,lotacao = %s,ingressos_vendidos = %s,ingressos_disponiveis = %s where id = %s"
         
-        
+        cursor.execute(sql,(novoNome,novaData,novoLocal,novaHora,novaLotacao,novoIngressosVendidos,novoIngressosDisponiveis,id))
+
+        conexao.commit()
+        conexao.close()
+        cursor.close()
 
         dadosEvento[id] = {"nome":novoNome,"data":novaData,"local":novoLocal,"hora":novaHora,"lotacao":novaLotacao}
 
         return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
     
     return render_template('paginaAtualizar.html',mostrarEvento = mostrarEvento)
+
+
+@app.route("/login", methods = ['get','post'])
+def login():
+
+    return render_template('login.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
