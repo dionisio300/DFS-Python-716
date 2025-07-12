@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Sistema de grid do bootstrap</h1>
+
+<div class="container border border-2 border-dark mt-3">
+    <h2>Esse é um container</h2>
+</div>
+
+
+<div class="container-fluid border border-2 border-dark mt-5">
+    <h2>Esse é um container-fluid</h2>
+</div>
+
+<div class="container border border-2 border-dark mt-5">
+    <h2>Container -> Linhas -> colunas</h2>
+
+    <div class="row border border-danger">
+        
+        <div class="col-1 border border-success">
+            col-1
+        </div>
+        <div class="col-1 border border-success">
+            col-2
+        </div>
+        <div class="col-1 border border-success">
+            col-3
+        </div>
+        <div class="col-1 border border-success">
+            col-4
+        </div>
+        <div class="col-1 border border-success">
+            col-5
+        </div>
+        <div class="col-1 border border-success">
+            col-6
+        </div>
+        <div class="col-1 border border-success">
+            col-7
+        </div>
+        <div class="col-1 border border-success">
+            col-8
+        </div>
+        <div class="col-1 border border-success">
+            col-9
+        </div>
+        <div class="col-1 border border-success">
+            col-10
+        </div>
+        <div class="col-1 border border-success">
+            col-11
+        </div>
+        <div class="col-1 border border-success">
+            col-12
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 border border-warning">
+            col-4
+        </div>
+        <div class="col-4 border border-warning">
+            col-4
+        </div>
+        <div class="col-4 border border-warning">
+            col-4
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-8 border border-primary">
+            col - 8
+        </div>
+        <div class="col-3 border border-primary">
+            col - 3
+        </div>
+        <div class="col-1 border border-primary">
+            col-1
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container-fluid container-md border border-warning border-2 mt-4">
+    <h2>Container responsivo</h2>
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 border border-warning border-2">
+            Coluna 1
+        </div>
+
+        <div class="d-none col-sm-6 col-md-7 col-lg-8 col-xl-9 d-sm-inline-block border border-2 ">
+            Coluna 2
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-2 border border-3">
+            coluna 1
+        </div>
+
+        <div class="col-2 border border-3">
+            coluna 2
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<!-- Alinhamento de texto -->
+
+<h1 class="text-center">HTML da Aula</h1>
+
+<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus asperiores sed perspiciatis. Reprehenderit sequi, dicta voluptatum laborum modi omnis quos, sit similique, eaque pariatur eius quod doloribus facere. Pariatur, eligendi?</p>
+
+<!-- Tamanho da fonte -->
+
+<h2>Título 1</h2>
+
+<p class="text-uppercase fs-3">Paragrafo 1: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate odit nihil deleniti autem sequi vitae tenetur sapiente mollitia nulla provident! Explicabo reiciendis, aliquid maiores nisi assumenda consequatur impedit quibusdam fuga!</p>
+
+<h2>Título 2</h2>
+
+<p class=" text-lowercase">Paragrafo 2: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate odit nihil deleniti autem sequi vitae tenetur sapiente mollitia nulla provident! Explicabo reiciendis, aliquid maiores nisi assumenda consequatur impedit quibusdam fuga!</p>
+
+<h2>Título 3</h2>
+
+<p class="text-capitalize">Paragrafo 3: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate odit nihil deleniti autem sequi vitae tenetur sapiente mollitia nulla provident! Explicabo reiciendis, aliquid maiores nisi assumenda consequatur impedit quibusdam fuga!</p>
+
+<h2>Estilos de fonte</h2>
+
+<p class="fw-bold">Bold text.</p>
+<p class="fw-bolder">Bolder weight text (relative to the parent element).</p>
+<p class="fw-semibold">Semibold weight text.</p>
+<p class="fw-medium">Medium weight text.</p>
+<p class="fw-normal">Normal weight text.</p>
+<p class="fw-light">Light weight text.</p>
+<p class="fw-lighter">Lighter weight text (relative to the parent element).</p>
+<p class="fst-italic">Italic text.</p>
+<p class="fst-normal">Text with normal font style</p>
+
+<h2>Reset Color</h2>
+<p class="text-danger">
+  Secondary body text with a <a href="#" class="text-success">reset link</a>.
+</p>
+
+<h2>Text decoration</h2>
+
+<p class="text-decoration-underline">This text has a line underneath it.</p>
+<p class="text-decoration-line-through">This text has a line going through it.</p>
+<a href="#" class="text-decoration-none">This link has its text decoration removed</a>
+
+
+<h2>Cores no bootstrap</h2>
+
+<p class="text-danger bg-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex eos blanditiis earum, assumenda fugit accusamus esse dolorum totam facere iusto dicta quaerat nam aperiam veritatis iste alias laudantium voluptatum. Libero.</p>
+
+<div class="text-bg-primary p-3">Primary with contrasting color</div>
+<div class="text-bg-secondary p-3">Secondary with contrasting color</div>
+<div class="text-bg-success p-3">Success with contrasting color</div>
+<div class="text-bg-danger p-3">Danger with contrasting color</div>
+<div class="text-bg-warning p-3">Warning with contrasting color</div>
+<div class="text-bg-info p-3">Info with contrasting color</div>
+<div class="text-bg-light p-3">Light with contrasting color</div>
+<div class="text-bg-dark p-3">Dark with contrasting color</div>
+
+<br><br><br>
+
+<h2>Margin e Padding</h2>
+
+<div class="m-5 p-5 border bg-success text-light">
+    <p>Caixa 1</p>
+</div>
+
+<div class=" ms-3 me-5 pt-3 ps-5 border bg-danger text-light">
+    <p>Caixa 2</p>
+</div>
+
+<div class="mt-5 w-25 mx-auto border bg-warning text-dark">
+    <p>Caixa 3</p>
+</div>
+
+<h2>Display none</h2>
+
+<div class="bg-black text-light py-5 w-25 d-block">
+    <!-- d-none -->
+    <p class="text-center">Caixa 4</p>
+</div>
+<br><br><br>
+<h2 class="text-start text-sm-center text-md-end bg-success text-light m-lg-5" >Breakpoints</h2>
+
+<div class="d-none d-sm-block border text-md-center text-lg-end">
+    <img class="border-5 border " src="https://cdn.motor1.com/images/mgl/AkB8vL/s3/fiat-mobi-2023.jpg" alt="" width="300px">
+</div>
+
+
+
+
+{% endblock %}
