@@ -18,6 +18,6 @@ def login():
 
 @app.route('/cadastro')
 def cadastro():
-    return 'Página de Cadastro'
+    return render_template('cadastro.html')
 
 app.run(debug=True)
