@@ -2,7 +2,7 @@
 
 {% block conteudo%}
 
-<div class="container mt-3">
+<div class="container">
 
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators">
@@ -15,9 +15,11 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img style="height:500px; object-fit: cover;" src="https://uploads.startups.com.br/2024/10/eventos-canva-jpg.webp" class="d-block w-100"
+                <img style="height:500px; object-fit: cover;"
+                    src="https://uploads.startups.com.br/2024/10/eventos-canva-jpg.webp" class="d-block w-100"
                     alt="...">
-                <div class="carousel-caption d-flex flex-column h-100 justify-content-center align-items-center my-auto">
+                <div
+                    class="carousel-caption d-flex flex-column h-100 justify-content-center align-items-center my-auto">
                     <div style="background-color: rgba(50, 50, 50, 0.5); border-radius: 10px; padding: 20px;">
                         <h2>Gerencie eventos de forma fácil</h2>
                         <p>Controle inscrições, pagamentos e participantes em um único sistema.</p>
@@ -65,7 +67,7 @@
 
 
 
-<div class="container">
+<div class="container" id="ferramentas">
     <h2 class="text-center my-4">Ferramentas para uma gestão completa e simplificada</h2>
 
     <div class="row">
@@ -157,8 +159,72 @@
     </div>
 </div>
 
+<div class="container mt-5" id="funcionalidades">
 
+    <h2 class="text-center">Funcionalidades do Sistema</h2>
 
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <i style="font-size: 5rem" class="bi bi-journal text-center  icone-card"></i>
+                <div class="card-body">
+                    <h5 class="card-title">Inscrição Online</h5>
+                    <p class="card-text">Permita que os participantes se inscrevam em eventos diretamente pelo sistema.
+                    </p>
+                    <a href="#" class="btn btn-primary">Inscreva-se</a>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-4 ">
+            <div class="card text-center h-100">
+                <img src="https://viacarreira.com/wp-content/uploads/2023/03/como-fazer-um-relatorio-academico.png"
+                    class="card-img-top icone-card" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Relatórios Gerenciais</h5>
+                    <p class="card-text">Acompanhe métricas e resultados dos seus eventos em tempo real.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card h-100">
+                <img src="https://img.freepik.com/vetores-premium/controle-financeiro_36900-2119.jpg"
+                    class="card-img-top icone-card" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card’s content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid mt-5 porqueSGE" id="porqueSGE">
+    <h2 class="text-center mt-5 pt-5">Porque usar o SGE</h2>
+
+    <div class="container">
+        <div class="row mt-5 pb-5">
+            <div class="col-md-6">
+                <p>
+                    O SGE (Sistema de Gerenciamento de Eventos) foi desenvolvido para facilitar a vida de organizadores de eventos, oferecendo uma plataforma completa e intuitiva.
+                </p>
+                <ul>
+                    <li>Interface simples e moderna</li>
+                    <li>Gestão completa de participantes</li>
+                    <li>Automatização de processos</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <img src="https://dashboardacademy.com.br/wp-content/uploads/2023/09/inspiracao-para-dashboard-gerencial-modelo-3.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}
