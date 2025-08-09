@@ -13,7 +13,7 @@ def conectar_banco():
     conexao = my.connect(
         host="localhost",
         user="root",
-        password="1234",
+        password="12341234",
         database="eventos"
     )
     return conexao
@@ -155,5 +155,3 @@ app.run(debug=True)
 # pegar as informações do formulário e levar para o python
 
 app.run(debug=True)
-
-
