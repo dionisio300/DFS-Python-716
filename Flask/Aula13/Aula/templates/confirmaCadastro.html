@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="container">
+    <div style="height: 80vh;" class="row justify-content-center align-items-center">
+        <div  class="col-10">
+            <h1 class="text-center text-success">Cadastro realizado com sucesso!!</h1>
+            <h3 class="text-center"> Vá para a página de <a href="{{url_for('login')}}">login</a></h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

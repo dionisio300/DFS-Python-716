@@ -2,6 +2,25 @@
 
 {% block conteudo %}
 
-<h1>Página do Usuário</h1>
+<div style="height: 100vh;" class="container">
+    <h1>Conheça nossos eventos</h1>
+    <hr>
+
+    <div class="row">
+
+        {% for evento in eventos %}
+        <div class="col-3">
+            <div class="card" style="width: 18rem; height: 18rem;">
+                <img src="https://eventicket.s3-sa-east-1.amazonaws.com/imgs/42997-banner-uhuu-orquestra-jackes.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{evento.titulo}}</h5>
+                    <p class="card-text">{{evento.descricao}}</p>
+                    <a href="#" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

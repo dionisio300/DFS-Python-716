@@ -2,6 +2,18 @@
 
 {% block conteudo %}
 
+{% if errou %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 border rounded border-2 border-dark m-5 p-5 text-center">
+            <h1 class="text-center">Senha incorreta! Tente novamente!</h1>
+            <a href="{{url_for('login')}}" class="btn btn-danger btn-lg mt-5">Voltar</a>
+        </div>
+    </div>
+</div>
+
+{% else %}
 <div class="container-fluid">
     <div class="row justify-content-center my-5">
         <div class="col-4 border">
@@ -40,6 +52,10 @@
         </div>
     </div>
 </div>
+
+
+{% endif %}
+
 
 
 

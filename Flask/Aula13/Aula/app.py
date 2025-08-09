@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import mysql.connector as my
+import bcrypt
 
 app = Flask(__name__)
 app.secret_key = '12345'
@@ -35,12 +36,15 @@ def login():
         lembrar = request.form.get('lembrar')
 
         print(f'E-mail: {email}, Senha: {senha}, Lembrar: {lembrar}')
+
         # Aqui você pode adicionar lógica para verificar o usuário no banco de dados
         conexao = conectar_banco()
         cursor = conexao.cursor(dictionary=True)
         sql = "select * from usuarios where email = %s"
         cursor.execute(sql,(email,))
+
         usuario_buscado = cursor.fetchone()
+
         try:
             if senha == usuario_buscado["senha"]:
                 print('Usuário pode entrar')
@@ -49,18 +53,20 @@ def login():
                 session["tipo"] = usuario_buscado["tipo"]
                 session["logado"] = True
 
-
                 if usuario_buscado["tipo"] == 'administrador':
                     return redirect('paginaAdm')
+                
                 elif usuario_buscado["tipo"] == 'cliente':
                     return redirect('paginaCliente')
+                
                 elif usuario_buscado["tipo"] == 'usuario':
                     return redirect('paginaUsuario')
 
             elif senha != usuario_buscado["senha"]:
-                print('Usuário erro a senha, tente novamente!')
-        except:
-            print('erro ao trazer do banco de dados')
+                errou = True
+                return render_template('login.html',errou = errou)
+        except Exception as e:
+            return render_template('erro.html',erro = e)
         
 
         print(usuario_buscado)
@@ -71,8 +77,8 @@ def login():
 def administrador():
     if 'tipo' not in session:
         return redirect('login')
-    
     if session['tipo'] == 'administrador':
+
         return render_template('administrador.html')
     else:
         return redirect('login')
@@ -83,6 +89,7 @@ def cliente():
     if 'tipo' not in session:
         return redirect('login')
     if session['tipo'] == 'cliente':
+
         return render_template('cliente.html')
     else:
         return redirect('login')
@@ -92,9 +99,14 @@ def usuario():
     if 'tipo' not in session:
         return redirect('login')
     if session['tipo'] == 'usuario':
-        #Aqui vai o código para essa página
+        
+        conexao = conectar_banco()
+        cursor = conexao.cursor(dictionary=True)
+        sql = 'select * from eventos'
+        cursor.execute(sql)
+        eventos = cursor.fetchall()
 
-        return render_template('usuario.html')
+        return render_template('usuario.html', eventos = eventos)
     else:
         return redirect('login')
 
@@ -103,30 +115,36 @@ def cadastro():
     if request.method == 'GET':
         return render_template('cadastro.html') 
     elif request.method == 'POST':
-        nome = request.form.get('name')
-        nome_usuario = request.form.get('username')
+        nome = request.form.get('nome')
+        userName = request.form.get('username')
         email = request.form.get('email')
-        tipo = request.form.get('accountType')
+        tipo = request.form.get('tipo')
         senha = request.form.get('senha')
-        print(f'Name: {nome}, Username: {nome_usuario}, AccountType: {tipo}, E-mail: {email}, Senha: {senha}')
+
+        senha = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        print(f'Senha: {senha}')
+
         conexao = conectar_banco()
         cursor = conexao.cursor(dictionary=True)
-        sql_verificacao = "SELECT * FROM usuarios WHERE email = %s"
-        cursor.execute(sql_verificacao, (email,))
-        usuario_buscado = cursor.fetchone()
-        if usuario_buscado:
-            return "E-mail já cadastrado. Tente outro."
-        sql_insercao = """
-            INSERT INTO usuarios (nome, nome_usuario, email, tipo, senha)
-            VALUES (%s, %s, %s, %s, %s)
-        """
-        cursor.execute(sql_insercao, (nome, nome_usuario, email, tipo, senha))
-        conexao.commit()
-        cursor.close()
-        conexao.close()
+        sql = 'select * from usuarios where email = %s'
+        cursor.execute(sql,(email,))
+        usuario = cursor.fetchone()
 
-        return "Usuário cadastrado com sucesso"
+        if usuario:
+            print(f'Usuario já cadastrado')
+            cadastrado = True
+            return render_template('cadastro.html', cadastrado = cadastrado,nome = nome)
+        else:
+            try:
+                sql = 'insert into usuarios (nome, nome_usuario, senha, email, tipo) values (%s,%s,%s,%s,%s)'
+                cursor.execute(sql,(nome,userName,senha,email,tipo))
+                conexao.commit()
+                conexao.close()
+                return render_template('confirmaCadastro.html')
+            except Exception as e:
+                return render_template('erro.html',erro = e)
 
+        
     
  
 app.run(debug=True)
