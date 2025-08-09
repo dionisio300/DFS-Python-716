@@ -12,7 +12,7 @@ def conectar_banco():
     conexao = my.connect(
         host="localhost",
         user="root",
-        password="1234",
+        password="12341234",
         database="eventos"
     )
     return conexao
@@ -115,7 +115,7 @@ def cadastro():
         cursor.execute(sql_verificacao, (email,))
         usuario_buscado = cursor.fetchone()
         if usuario_buscado:
-            return "E-mail já cadastrado. Tente outro."
+            return render_template('cadastro.html', mensagem='E-mail já cadastrado. Tente outro.')
         sql_insercao = """
             INSERT INTO usuarios (nome, nome_usuario, email, tipo, senha)
             VALUES (%s, %s, %s, %s, %s)
@@ -125,7 +125,7 @@ def cadastro():
         cursor.close()
         conexao.close()
 
-        return "Usuário cadastrado com sucesso"
+        return render_template('cadastro.html', mensagem='Cadastro realizado com sucesso!')
 
     
  
@@ -137,5 +137,3 @@ app.run(debug=True)
 # pegar as informações do formulário e levar para o python
 
 app.run(debug=True)
-
-
