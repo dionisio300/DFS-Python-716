@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseLogado.html' %}
 
 {% block conteudo %}
 
@@ -11,16 +11,59 @@
         {% for evento in eventos %}
         <div class="col-3">
             <div class="card" style="width: 18rem; height: 18rem;">
-                <img src="https://eventicket.s3-sa-east-1.amazonaws.com/imgs/42997-banner-uhuu-orquestra-jackes.png" class="card-img-top" alt="...">
+                <img src="https://eventicket.s3-sa-east-1.amazonaws.com/imgs/42997-banner-uhuu-orquestra-jackes.png"
+                    class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{evento.titulo}}</h5>
                     <p class="card-text">{{evento.descricao}}</p>
-                    <a href="#" class="btn btn-primary">Saiba mais</a>
+
+                    <form action="{{url_for('eventoS')}}" method="post">
+                        <input type="hidden" value="{{evento.id}}" name="id">
+                        <input type="hidden" value="{{evento.titulo}}" name="titulo">
+                        <input type="hidden" value="{{evento.descricao}}" name="descricao">
+                        <input type="hidden" value="{{evento.local_evento}}" name="local_evento">
+                        <input type="hidden" value="{{evento.horario}}" name="horario">
+                        <input type="hidden" value="{{evento.lotacao}}" name="lotacao">
+                        <input type="hidden" value="{{evento.ingressos_disponiveis}}" name="ingressos_disponiveis">
+                        <input type="submit" class="btn btn-primary" value="Saiba mais">
+                    </form>
+
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card p-3" style="width: 18rem; height: 18rem;">
+                <a class="text-decoration-none" href="">
+                    <div class="text-center bg-danger border rounded-5 mt-3" style="height: 4rem;">
+                        <span class="text-light d-inline-block fs-2 fw-bold">Comprar</span>
+                    </div>
+                </a>
+
+                <div class="card-body">
+                    <h5 class="card-title">Show</h5>
+                    <div class="d-flex">
+                        <div class="me-1" style="padding:auto 0">
+                            <i class="bi bi-clock fs-4"></i>
+                        </div>
+                        <div>
+                            <p>16 de Agosto de 2025 a 28 de Setembro de 2025 <br>Múltiplas Sessões</p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height: 500px;">
+
 </div>
 
 {% endblock %}

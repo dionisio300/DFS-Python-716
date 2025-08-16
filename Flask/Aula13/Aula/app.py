@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 import mysql.connector as my
 import bcrypt
 
@@ -13,7 +13,7 @@ def conectar_banco():
     conexao = my.connect(
         host="localhost",
         user="root",
-        password="12341234",
+        password="1234",
         database="eventos"
     )
     return conexao
@@ -46,7 +46,7 @@ def login():
         usuario_buscado = cursor.fetchone()
 
         try:
-            if senha == usuario_buscado["senha"]:
+            if bcrypt.checkpw(senha.encode('utf-8'), usuario_buscado["senha"].encode('utf-8')):
                 print('Usuário pode entrar')
 
                 session["nome"] = usuario_buscado["nome"]
@@ -78,8 +78,9 @@ def administrador():
     if 'tipo' not in session:
         return redirect('login')
     if session['tipo'] == 'administrador':
-
-        return render_template('administrador.html')
+        tipo = session['tipo']
+        nome = session['nome']
+        return render_template('administrador.html',nome = nome,tipo = tipo)
     else:
         return redirect('login')
         
@@ -90,7 +91,10 @@ def cliente():
         return redirect('login')
     if session['tipo'] == 'cliente':
 
-        return render_template('cliente.html')
+        tipo = session['tipo']
+        nome = session['nome']
+
+        return render_template('cliente.html',nome = nome,tipo = tipo)
     else:
         return redirect('login')
 
@@ -106,7 +110,11 @@ def usuario():
         cursor.execute(sql)
         eventos = cursor.fetchall()
 
-        return render_template('usuario.html', eventos = eventos)
+        tipo = session['tipo']
+        nome = session['nome']
+
+
+        return render_template('usuario.html', eventos = eventos,nome = nome,tipo = tipo)
     else:
         return redirect('login')
 
@@ -147,8 +155,35 @@ def cadastro():
         
     
  
-app.run(debug=True)
+@app.route('/sair')
+def sair():
+    session.clear()
+    return redirect(url_for('home'))
 
+@app.route('/eventoS', methods=['GET', 'POST'])
+def eventoS():
+    if request.method == 'GET':
+        return render_template('eventoS.html')
+    if request.method == 'POST':
+        id = request.form.get('id')
+        titulo = request.form.get('titulo')
+        descricao = request.form.get('descricao')
+        local_evento = request.form.get('local_evento')
+        horario = request.form.get('horario')
+        lotacao = request.form.get('lotacao')
+        ingressos_disponiveis = request.form.get('ingressos_disponiveis')
+
+        evento = {
+            'id':id,
+            'titulo':titulo,
+            'descricao':descricao,
+            "local_evento":local_evento,
+            "horario":horario,
+            "lotacao" :lotacao,
+            "ingressos_disponiveis":ingressos_disponiveis
+        }
+
+        return render_template('eventoS.html',evento=evento)
 
 # criar a rota
 # criar o template
