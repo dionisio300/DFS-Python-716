@@ -18,21 +18,8 @@
         <div class="row justify-content-center ">
             <div class="col-6 border border-dark rounded-3 p-3 mt-5">
                 
-                <form action="{{url_for('mostrarEndereco')}}" method="post">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome">
-                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">CEP</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ex: 88888888" maxlength="8" name="cep">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </form>
-
-                dados: {{dados}}
-
+                <h1>Erro ao consultar o CEP! Tente novamente</h1>
+                <a href="{{url_for('paginaInicial')}}">Click aqui</a>
 
             </div>
         </div>
