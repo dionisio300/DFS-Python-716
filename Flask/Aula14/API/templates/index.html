@@ -21,19 +21,39 @@
                 <form action="{{url_for('mostrarEndereco')}}" method="post">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome" value="{{nome}}">
                         
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">CEP</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ex: 88888888" maxlength="8" name="cep">
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ex: 88888888" maxlength="8" name="cep" value="{{dados.cep}}">
                     </div>
+
+                    {% if dados %}
+
+                        <div class="mb-3">
+                            <label for="rua" class="form-label">Rua</label>
+                            <input type="text" class="form-control" id="rua" name="rua" value="{{dados.logradouro}}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="bairro" class="form-label">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" name="bairro" value="{{dados.bairro}}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cidade" class="form-label">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" name="cidade" value="{{dados.localidade}}" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="estado" name="estado" value="{{dados.estado}}" disabled>
+                        </div>
+
+                    {% endif %}
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
-
-                dados: {{dados}}
-
-
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ def paginaInicial():
 def mostrarEndereco():
 
     if request.method == 'POST':
+        
         nome = request.form.get('nome')
         cep = request.form.get('cep')
         # Criar a URL da API
@@ -25,11 +26,17 @@ def mostrarEndereco():
             if 'erro' in dados:
                 return render_template('paginaErro.html')
             else:
-                return render_template('index.html', dados=dados)
+                return render_template('index.html', dados=dados,nome=nome)
         else:
             erro = resposta.status_code
             return render_template('paginaErro.html')
     else:
         return render_template('index.html')
+
+
+
+
+
+
 
 app.run(debug=True)
