@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+<h1>Olá Loja</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="card p-2" style="width: 18rem;">
+                <div class="text-center">
+                    <img src="{{dados.image}}" class="" alt="..." width="80%">
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{dados.title}}</h5>
+                    <h5 class="card-title">Preço: R$ {{dados.price}}</h5>
+                    <p class="card-text">{{dados.description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

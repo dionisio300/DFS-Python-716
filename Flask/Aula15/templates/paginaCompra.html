@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Página Compra</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 border d-flex justify-content-center align-items-center" style="height: 400px;">
+            <div>
+                <img src="{{dados.image}}" alt="" height="300px">
+            </div>
+        </div>
+        <div class="col-md-3 border">
+            <h3 class="mt-3">{{dados.title}}</h3>
+            <h1>R$ {{dados.price}}</h1>
+            <h5>12x R$ {{parcela}} sem juros</h5>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

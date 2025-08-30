@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def paginaInicial():
-
-    return render_template('index.html')
+    dados = []
+    return render_template('index.html',dados = dados)
 
 @app.route('/mostrarEndereco', methods = ['GET','POST'])
 def mostrarEndereco():
